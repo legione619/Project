@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.Iterator;
 
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -24,6 +25,7 @@ public class report_excell
             XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheet(foglio);
             Cell cell = null;
+            Cell cell2 = null;
             for(row=2;row<=6;row++){
             //Retrieve the row and check for null
             	XSSFRow sheetrow = sheet.getRow(row);
@@ -33,8 +35,11 @@ public class report_excell
             	//Update the value of cell
             	col=sheetrow.getLastCellNum();
             	cell = sheetrow.getCell(col);
+            	cell2 = sheetrow.getCell(col-1);
+            	CellStyle currentStyle = cell2.getCellStyle();
             	if(cell == null){
             		cell = sheetrow.createCell(col);
+            		cell.setCellStyle(currentStyle);
             	}
             	cell.setCellValue(value[row-2]);
             }
