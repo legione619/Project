@@ -31,7 +31,7 @@ public class suite {
 			  Properties prop = new Properties();
 			  InputStream input = null;
 			  try {
-				  String filename = "config.properties";
+				  String filename = "config2.properties";
 				  input = getClass().getClassLoader().getResourceAsStream(filename);
 				  if (input == null) {
 					  System.out.println("Sorry, unable to find " + filename);
@@ -51,10 +51,11 @@ public class suite {
 						  String value = prop.getProperty(key);
 						  Tests.link=value;
 						  result[0] = Tests.open_map();
+						  result[0] = Tests.entra_esci();
 						  result[1] = Tests.zoom();
 						  result[2] = Tests.tooltip();
 						  result[3] = Tests.map_pan();
-						  result[4] = Tests.print();
+						  result[4] = Tests.print();		  
 						  System.out.println("Open map: " + result[0]);
 						  System.out.println("Tooltip : "+ result[1]);
 						  System.out.println("Zoom: " + result[2]);

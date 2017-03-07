@@ -5,8 +5,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.Iterator;
-
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
@@ -22,7 +20,8 @@ public class report_excell
     	try {
             FileInputStream file = new FileInputStream("C:\\shared\\Tempi_AP_auto.XLSX");
 
-            XSSFWorkbook workbook = new XSSFWorkbook(file);
+            @SuppressWarnings("resource")
+			XSSFWorkbook workbook = new XSSFWorkbook(file);
             XSSFSheet sheet = workbook.getSheet(foglio);
             Cell cell = null;
             Cell cell2 = null;

@@ -5,15 +5,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
 
 public class interactiveZoomInOpenLayerstest_01 {
 
-private static WebDriver driver = null;
+
 static String link ="http://geoapplicazioni-gisgridap.risorse.enel/mapserver2013/fusion/templates/mapguide/GISGridAPWeb/PanelGISGridAP.ashx?c29jPUREMDEmY29kb3JnPURENEIyNDgmUFJPR0FQPTkwMDAwMDAwMDAyMCZ1c2VyPUExMjQyMDEmcHJvdG9jb2xsbz1BQUJCJnN0YXRvPVBSRVYmdGVzdG9wcm9nYXA9VFNUXzEmY29uc3VudGl2bz1ZJmVuZWx0ZWw9JmNhYmluYT0mYXRsYW50ZT0mcHJlc2E9JmluZGlyaXp6bz0mY2RsX3Byb3Q9RDRCVkM=";
 static String pezzotto64="C:\\Users\\xantris\\Desktop\\selenium\\IEDriverServer_x64_3.0.0\\IEDriverServer.exe";
 static String pezzotto32="C:\\Users\\xantris\\Desktop\\selenium\\IEDriverServer_Win32_3.0.0\\IEDriverServer.exe";

@@ -26,7 +26,46 @@ public void better_click(){
 	/* It is needed the GEO coordinate of the first 
 	 * 
 	 */
+	
 }
+
+public double entra_esci(){
+	double LAT=40.670066;
+	double LONG=14.792063;
+	SphericalMercator asd = new SphericalMercator();
+	a.get(link);
+	WebDriverWait wait = new WebDriverWait(a, 120);		
+	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+	element = a.findElement(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]"));
+	String pippo = element.getAttribute("src");
+	System.out.println(pippo);
+	String[] params = pippo.split("\\&");
+	String setdisplaydpi = params[10].split("=")[1];
+	String setdisplayheight = params[11].split("=")[1];
+	String setdisplaywidth = params[12].split("=")[1];
+	double setviewcenterx = Double.parseDouble(params[13].split("=")[1]);
+	double setviewcentery = Double.parseDouble(params[14].split("=")[1]);
+	String setviewscale = params[15].split("=")[1];
+	double lon_c_map=asd.x2lon(setviewcenterx);
+	double lat_c_map=asd.y2lat(setviewcentery);
+	double x=asd.lat2y(LAT);
+	double y=asd.lon2x(LONG);
+	System.out.println("setviewcenterx "+ setviewcenterx +" --> lon_c_map " + lon_c_map);
+	System.out.println("setviewcentery "+ setviewcentery+" --> lat_c_map " + lat_c_map);
+	System.out.println("LAT "+LAT + "--> Y "+ y);
+	System.out.println("LONG "+LONG + "--> X "+ x);
+
+	return 0;	
+}
+
+public double spezza_ramo(){
+	return 0;	
+}
+
+public double area_cant(){
+	return 0;
+}
+
 public double open_map(){
 
 	long start = System.currentTimeMillis();
@@ -34,6 +73,7 @@ public double open_map(){
 	a.manage().window().maximize();
 	a.switchTo().frame("GeoSearchPane_IFRAME");
 	WebDriverWait wait = new WebDriverWait(a, 120);		
+	@SuppressWarnings("unused")
 	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@class='ui-accordion-header-icon ui-icon apri']")));
 	a.switchTo().defaultContent();
 	element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
@@ -65,6 +105,7 @@ public double zoom ()
 	element_input.sendKeys("144448");
 	element_input.sendKeys(Keys.RETURN);
 	WebDriverWait wait = new WebDriverWait(a, 120);
+	@SuppressWarnings("unused")
 	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
 	element_input.clear();
 	element_input.sendKeys("2257");
