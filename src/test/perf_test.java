@@ -17,52 +17,10 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+
 public class perf_test {
 	String link ="";
-	
 	WebDriver a = new InternetExplorerDriver();
-	
-public void better_click(){
-	/* It is needed the GEO coordinate of the first 
-	 * 
-	 */
-	
-}
-
-public double entra_esci(){
-	SphericalMercator asd = new SphericalMercator();
-	a.get(link);
-	WebDriverWait wait = new WebDriverWait(a, 120);		
-	WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
-	element = a.findElement(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]"));
-	String pippo = element.getAttribute("src");
-	System.out.println(pippo);
-	String[] params = pippo.split("\\&");
-	String setdisplaydpi = params[10].split("=")[1];
-	String setdisplayheight = params[11].split("=")[1];
-	String setdisplaywidth = params[12].split("=")[1];
-	double setviewcenterx = Double.parseDouble(params[13].split("=")[1]);
-	double setviewcentery = Double.parseDouble(params[14].split("=")[1]);
-	int setviewscale = (int) Double.parseDouble(params[15].split("=")[1]);
-	double lon_c_map=asd.x2lon(setviewcenterx);
-	double lat_c_map=asd.y2lat(setviewcentery);
-	GoogleMapsProjection2 gmap2 = new GoogleMapsProjection2();
-
-    PointF point1 = gmap2.fromLatLngToPoint(lat_c_map, lon_c_map, setviewscale);
-    System.out.println(point1.x+"   "+point1.y);
-    PointF point2 = gmap2.fromPointToLatLng(point1,15);
-    System.out.println(point2.x+"   "+point2.y);
-
-	return 0;	
-}
-
-public double spezza_ramo(){
-	return 0;	
-}
-
-public double area_cant(){
-	return 0;
-}
 
 public double open_map(){
 
