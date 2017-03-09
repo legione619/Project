@@ -30,8 +30,6 @@ public void better_click(){
 }
 
 public double entra_esci(){
-	double LAT=40.670066;
-	double LONG=14.792063;
 	SphericalMercator asd = new SphericalMercator();
 	a.get(link);
 	WebDriverWait wait = new WebDriverWait(a, 120);		
@@ -45,15 +43,15 @@ public double entra_esci(){
 	String setdisplaywidth = params[12].split("=")[1];
 	double setviewcenterx = Double.parseDouble(params[13].split("=")[1]);
 	double setviewcentery = Double.parseDouble(params[14].split("=")[1]);
-	String setviewscale = params[15].split("=")[1];
+	int setviewscale = (int) Double.parseDouble(params[15].split("=")[1]);
 	double lon_c_map=asd.x2lon(setviewcenterx);
 	double lat_c_map=asd.y2lat(setviewcentery);
-	double x=asd.lat2y(LAT);
-	double y=asd.lon2x(LONG);
-	System.out.println("setviewcenterx "+ setviewcenterx +" --> lon_c_map " + lon_c_map);
-	System.out.println("setviewcentery "+ setviewcentery+" --> lat_c_map " + lat_c_map);
-	System.out.println("LAT "+LAT + "--> Y "+ y);
-	System.out.println("LONG "+LONG + "--> X "+ x);
+	GoogleMapsProjection2 gmap2 = new GoogleMapsProjection2();
+
+    PointF point1 = gmap2.fromLatLngToPoint(lat_c_map, lon_c_map, setviewscale);
+    System.out.println(point1.x+"   "+point1.y);
+    PointF point2 = gmap2.fromPointToLatLng(point1,15);
+    System.out.println(point2.x+"   "+point2.y);
 
 	return 0;	
 }
