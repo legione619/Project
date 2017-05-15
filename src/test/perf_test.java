@@ -7,6 +7,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -19,9 +20,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 
 public class perf_test {
+	
+
 	String link ="";
 	WebDriver a = new InternetExplorerDriver();
-
+	//WebDriver a = new  PhantomJSDriver(suite2.caps);
 public double open_map(){
 
 	long start = System.currentTimeMillis();
@@ -125,6 +128,105 @@ public double print()
 	long finish = System.currentTimeMillis();
 	double totalTime = (finish - start)/1000.0; 
 	//a.close();
+	a.switchTo().frame("TaskPane_IFRAME");
+	element = a.findElement(By.xpath("//*[@title='Annulla stampa']"));
+	element.click();
 	return totalTime;
 		}
+public double sfondo(){
+	WebDriverWait wait = new WebDriverWait(a, 120);		
+	WebElement element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	//element=a.findElement(By.id("//[@class=jxMenuContainer jxHasChrome]")); 
+	element = a.findElement(By.xpath("//*[contains(text(), 'Google Maps Satellite')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	element = a.findElement(By.xpath("//*[contains(text(), 'Google Maps Hybrid')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	element = a.findElement(By.xpath("//*[contains(text(), 'Bing Maps Street')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	element = a.findElement(By.xpath("//*[contains(text(), 'Bing Maps Satellite')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	element = a.findElement(By.xpath("//*[contains(text(), 'Bing Maps Hybrid')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	element = a.findElement(By.xpath("//*[contains(text(), 'Open Street Map Street')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	element = a.findElement(By.xpath("//*[@title='Cambia la mappa di sfondo']"));
+	element.click();
+	element = a.findElement(By.xpath("//*[contains(text(), 'NONE')]"));
+	element.click();
+	try{
+		element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]")));
+		}catch (TimeoutException exception) {
+	        return -1;
+	    }
+	return 0;
+}
+public boolean area(){
+	WebElement element = a.findElement(By.xpath("//*[@title='Misura areale']"));
+	element.click();
+	Actions act = new Actions(a);
+	element = a.findElement(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]"));
+	act.moveToElement(element,400,150).click().click().moveByOffset(200, 100).click().click().moveByOffset(-100, 200).release().doubleClick().build().perform();
+	//element = a.findElement(By.xpath("*[contains(@class ,'divMeasureMarker')");
+	if(a.findElements(By.xpath("//*[contains(@class ,'divMeasureMarker')]")).size() > 0 ){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
+public boolean lineare(){
+	WebElement element = a.findElement(By.xpath("//*[@title='Misura lineare']"));
+	element.click();
+	Actions act = new Actions(a);
+	element = a.findElement(By.xpath("//*[contains(@src ,'mapagent/mapagent.fcgi') and contains(@class, 'olTileImage') and contains(@id, 'OpenLayersDiv')]"));
+	act.moveToElement(element,400,150).click().click().moveByOffset(200, 100).click().click().moveByOffset(-100, 200).release().doubleClick().build().perform();
+	//element = a.findElement(By.xpath("*[contains(@class ,'divMeasureMarker')");
+	if(a.findElements(By.xpath("//*[contains(@class ,'divMeasureMarker')]")).size() > 0 ){
+		return true;
+	}else{
+		return false;
+	}
+	
+}
 }

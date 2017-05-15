@@ -8,7 +8,6 @@ import java.awt.event.KeyEvent;
 import java.lang.InterruptedException;
 
 public class DialogWindow implements Runnable {
-	@Override
 	public void run() {
 	    try {
 	        entercredentials();
@@ -19,9 +18,11 @@ public class DialogWindow implements Runnable {
 	public void entercredentials() throws InterruptedException {
 	    Thread.sleep(3000);
 	    try {
-	        //enterText("RISORSE\\apri253");
+	        //enterText("RISORSE\apri253");
 	        //enterSpecialChar(KeyEvent.VK_TAB);
-	        enterText("Ericsson0217");
+	        enterText("WqJeDl$7");
+//	        enterText("graz1a_0317");
+
 	        //enterSpecialChar(KeyEvent.VK_ENTER);
 
 	    } catch (AWTException e) {
