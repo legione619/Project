@@ -9,11 +9,13 @@ import java.util.Enumeration;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+
 /**
  * @author xantris
  *
  */
 public class suite {
+	
 	static String driver64;
 	static String driver32;
 	/**
@@ -55,7 +57,7 @@ public class suite {
 		}
 	}
 	
-	public static  void main(String[] args) 
+	public static void main(String[] args) 
 	{
 		suite suite = new suite();
 		suite.loadparam();
@@ -72,7 +74,7 @@ public class suite {
 		InputStream input = null;
 		try 
 		{
-			String filename = "config.properties";
+			String filename = "config2.properties";
 			input = getClass().getClassLoader().getResourceAsStream(filename);
 			if (input == null) 
 			{
@@ -83,7 +85,7 @@ public class suite {
 			Enumeration<?> e = prop.propertyNames();
 			int size=prop.size();
 			int stato=0;
-			int skip=4;
+			int skip=0;
 			while (e.hasMoreElements()) 
 			{
 				stato++;
@@ -95,17 +97,36 @@ public class suite {
 					String value = prop.getProperty(key);
 					Tests.link=value;
 					result[0] = Tests.open_map();
-					//result[0] = Tests.entra_esci();
-					result[1] = Tests.zoom();
-					result[2] = Tests.tooltip();
-					result[3] = Tests.map_pan();
-					result[4] = Tests.print();		  
 					System.out.println("Open map: " + result[0]);
+					result[1] = Tests.zoom();
 					System.out.println("Tooltip : "+ result[1]);
+
+					result[2] = Tests.tooltip();
 					System.out.println("Zoom: " + result[2]);
+
+					result[3] = Tests.map_pan();
 					System.out.println("Map pan: " + result[3]);
+
+					result[4] = Tests.print();		  
 					System.out.println("Print: " + result[4]);
 					new report_excell().writeXLSXFile(key,result);
+					if (Tests.sfondo()!=0){
+						System.out.println("Test  Mappe di sfondo KO");
+						
+					}else{
+						System.out.println("Test  Mappe di sfondo OK");
+
+					}
+					if (Tests.area()){
+						System.out.println("Test Misura Area OK");
+					}else{
+						System.out.println("Test Misura Area KO");
+					}
+					if (Tests.lineare()){
+						System.out.println("Test Misura Lineare OK");
+					}else{
+						System.out.println("Test Misura Lineare KO");
+					}	
 					try 
 					{
 						TimeUnit.SECONDS.sleep(1);
